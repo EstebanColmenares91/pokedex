@@ -1,0 +1,147 @@
+body {
+  text-align: center;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  background-image: url("./background.jpg");
+  background-position: center;
+  background-size: contain;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+.inactive {
+  display: none;
+}
+
+.pokemon-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 30px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.pokemon-block,
+.pokemon-block-back {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #0a162d;
+  color: white;
+  box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+}
+
+.pagination {
+  margin-bottom: 50px;
+}
+
+.pokemon-block,
+.pokemon-block-back {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.pokemonSelected {
+  margin: 0 auto;
+  max-width: 350px;
+}
+
+.pokemonCard {
+  height: auto;
+  width: 100%;
+  min-width: 320px;
+  max-width: 750px;
+  background-color: #0a162d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  padding: 25px 15px 0;
+  border-radius: 10px;
+}
+
+.pokemon__figure {
+  margin: 0;
+}
+
+.pokemon__img {
+  width: 250px;
+}
+
+.pokemonMainInfo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  place-items: center;
+}
+
+.pokemon__name {
+  grid-area: 1/1/2/4;
+}
+
+.pokemon__id {
+  grid-area: 2/1/3/4;
+}
+
+.pokemon__height {
+  grid-area: 3/1/4/2;
+}
+
+.pokemon__weight {
+  grid-area: 3/2/4/3;
+}
+
+.pokemon__stats--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  place-items: center;
+}
+
+.pokemon__stats div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.stats__title {
+  text-align: center;
+}
+
+.spritesContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+}
+
+.button {
+  width: 120px;
+  height: 45px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  background-color: #7735fa;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 10px;
+}
+
+input {
+  height: 45px;
+  border-radius: 10px;
+  border-top: none;
+  border-left: none;
+  padding: 8px;
+}
