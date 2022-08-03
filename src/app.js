@@ -4,7 +4,7 @@ const API_URL_FETCH_POKEMON_NAME = (name) =>
   `https://pokeapi.co/api/v2/pokemon/${name}/`;
 
 let offset = 1;
-const limit = 115;
+const limit = 75;
 const spritesArray = [];
 const typesArray = [];
 
@@ -202,7 +202,7 @@ function createselectedPokemonByClick(pokemon) {
 
 previous.addEventListener("click", () => {
   if (offset != 1) {
-    offset -= 115;
+    offset -= 75;
     removeChildNodes(pokemonContainer);
     fetchPokemons(offset, limit);
   } else {
@@ -211,7 +211,7 @@ previous.addEventListener("click", () => {
 });
 
 next.addEventListener("click", () => {
-  offset += 115;
+  offset += 75;
   removeChildNodes(pokemonContainer);
   fetchPokemons(offset, limit);
 });
