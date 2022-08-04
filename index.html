@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex</title>
+    <title>Pokédex</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
@@ -17,15 +17,17 @@
     <link rel="icon" href="./css/pokeball.png">
   </head>
   <body>
-    <h1 class="title">Pokedex</h1>
+    <h1 class="title">Pokédex</h1>
     <main class="pokedex">
       <div class="container">
         <div class="main__content">
 
           <span class="spanError"></span>
+          <span class="spanError spanWarning"></span>
+
           <div class="searching__pokemon">
             <input type="text" id="nombrePokemon" placeholder="Search by name or ID">
-            <input type="button" class="button bi bi-search" id="searchBoton" value="Search" onclick="buscarPokemon()">
+            <input type="button" class="button bi bi-search" id="searchBoton" value="Search 🔎" onclick="buscarPokemon()">
           </div>
           <div id="pokemonName" class="searchedPokemon"></div>
           <div class="otro-container">
@@ -57,7 +59,7 @@
                 <p class="pokemon__weight"></p>
               </div>
               <figure class="pokemon__figure">
-                <img src="" alt="" class="pokemon__img">
+                <img src="" alt="pokemon image" class="pokemon__img">
               </figure>
               <div class="pokemon__info pokemon__info--grid">
                 <div class="pokemon__type"></div>

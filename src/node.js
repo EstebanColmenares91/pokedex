@@ -10,6 +10,7 @@ const mainContainer = document.querySelector(".pokedex");
 /* Message error */
 
 const spanError = document.querySelector(".spanError");
+const spanWarning = document.querySelector(".spanWarning");
 
 /* buttons */
 

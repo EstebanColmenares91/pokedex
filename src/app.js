@@ -34,10 +34,11 @@ function buscarPokemon() {
   const nameToLowerCaseTrimed = nameToLowerCase.trim();
 
   if (nameToLowerCaseTrimed.length === 0) {
-    spanError.innerText = "Este campo se encuentra vacío";
+    spanWarning.innerText = "Este campo se encuentra vacío";
   } else {
-    fetchPokemonName(nameToLowerCaseTrimed);
     spanError.innerText = "";
+    spanWarning.innerText = "";
+    fetchPokemonName(nameToLowerCaseTrimed);
   }
 }
 
@@ -170,7 +171,7 @@ function createselectedPokemonByClick(pokemon) {
   pokemonCard.style.background = `radial-gradient(circle at 50% 0%, ${themeColor} 36%, #0a162d 36%)`;
 
   const pokemonTypes = pokemon.types;
-  pokemonTypes.forEach((type) => {
+   .forEach((type) => {
     typesArray.push(type.type.name);
   });
 
