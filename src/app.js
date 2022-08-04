@@ -31,8 +31,14 @@ function buscarPokemon() {
   const nombreID = document.getElementById("nombrePokemon");
   const nombreIDValue = nombreID.value;
   const nameToLowerCase = nombreIDValue.toLowerCase();
+  const nameToLowerCaseTrimed = nameToLowerCase.trim();
 
-  fetchPokemonName(nameToLowerCase);
+  if (nameToLowerCaseTrimed.length === 0) {
+    spanError.innerText = "Este campo se encuentra vacío";
+  } else {
+    fetchPokemonName(nameToLowerCaseTrimed);
+    spanError.innerText = "";
+  }
 }
 
 async function fetchPokemonName(nombre) {
@@ -70,7 +76,7 @@ function createPokemonSearched(pokemon) {
   const name = document.createElement("p");
   name.innerText = pokemon.name.toUpperCase();
 
-  name.addEventListener("click", () => {
+  card.addEventListener("click", () => {
     location.hash = "#pokemon=" + pokemon.name;
     location.reload();
   });
@@ -118,9 +124,10 @@ function createPokemon(pokemon) {
   number.textContent = `#${pokemon.id.toString().padStart(3, 0)}`;
 
   const name = document.createElement("p");
+  name.classList.add("card__pokemonName");
   name.innerText = pokemon.name.toUpperCase();
 
-  name.addEventListener("click", () => {
+  card.addEventListener("click", () => {
     location.hash = "#pokemon=" + pokemon.name;
     location.reload();
   });
