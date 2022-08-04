@@ -171,7 +171,7 @@ function createselectedPokemonByClick(pokemon) {
   pokemonCard.style.background = `radial-gradient(circle at 50% 0%, ${themeColor} 36%, #0a162d 36%)`;
 
   const pokemonTypes = pokemon.types;
-   .forEach((type) => {
+  pokemonTypes.forEach((type) => {
     typesArray.push(type.type.name);
   });
 

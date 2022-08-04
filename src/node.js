@@ -17,6 +17,10 @@ const spanWarning = document.querySelector(".spanWarning");
 const previous = document.querySelector(".previous");
 const next = document.querySelector(".next");
 
+/* close window */
+
+const close = document.querySelector(".icon");
+
 /* Inputs */
 
 const nombrePokemon = document.querySelector("#nombrePokemon");

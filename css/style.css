@@ -80,6 +80,14 @@ body {
   font-family: "IBM Plex Sans", sans-serif;
 }
 
+.icon{
+  display: flex;
+  justify-content: flex-end;
+  font-size: 4rem;
+  color: white;
+}
+
+
 .searching__pokemon{
   display: flex;
   flex-direction: column;
