@@ -25,11 +25,15 @@
           <span class="spanError"></span>
           <span class="spanError spanWarning"></span>
 
-          <div class="searching__pokemon">
+          <form class="searching__pokemon">
             <input type="text" id="nombrePokemon" placeholder="Search by name or ID">
             <input type="button" class="button bi bi-search" id="searchBoton" value="Search 🔎" onclick="buscarPokemon()">
+          </form>
+
+          <div class="searchedPokemon__container">
+            <div id="pokemonName" class="searchedPokemon"></div>
           </div>
-          <div id="pokemonName" class="searchedPokemon"></div>
+          
           <div class="otro-container">
             <div class="pokemon-container">
 
