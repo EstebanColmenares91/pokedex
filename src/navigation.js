@@ -1,16 +1,14 @@
 window.addEventListener("DOMContentLoaded", navigator, false); //carga el contenido de la página
 window.addEventListener("hashchange", navigator, false); //escucha la petición
 
-icon.addEventListener("click", () => {
-  location.hash = "#home"
-})
-
 function navigator() {
   if (location.hash.startsWith("#pokemon=")) {
     pokemonPage();
   }else {
     homePage();
   }
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
 
 function pokemonPage() {
