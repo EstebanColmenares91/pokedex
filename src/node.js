@@ -1,11 +1,15 @@
 /* Container */
-const pokemonContainer = document.querySelector(".pokemon-container");
-const pokemonName = document.querySelector("#pokemonName");
-const containerPrincipal = document.querySelector(".otro-container");
-
-const pokedex2 = document.querySelector(".pokemonSelected__container");
 
 const mainContainer = document.querySelector(".pokedex");
+
+/* MAIN POKÉDEX CONTAINER */
+
+const pokemonContainer = document.querySelector(".pokemon-container");
+const containerPrincipal = document.querySelector(".otro-container");
+
+/* POKEMON SEARCHED */
+const pokemonName = document.querySelector("#pokemonName");
+const searchedPokemon__container = document.querySelector(".searchedPokemon__container")
 
 /* Message error */
 
@@ -27,6 +31,7 @@ const nombrePokemon = document.querySelector("#nombrePokemon");
 const searchBoton = document.querySelector("#searchBoton");
 
 /* Pokemon Individual Card */
+const pokedex2 = document.querySelector(".pokemonSelected__container");
 const pokemonMainInfo = document.querySelector(".pokemonMainInfo");
 const pokemonCard = document.querySelector(".pokemonCard");
 
