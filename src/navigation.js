@@ -1,3 +1,11 @@
+close.addEventListener('click', () => {
+  if (window.domain !== 'localhost') {
+    location.hash = '#home';
+  } else {
+      history.back()
+  }
+})
+
 window.addEventListener("DOMContentLoaded", navigator, false); //carga el contenido de la página
 window.addEventListener("hashchange", navigator, false); //escucha la petición
 
@@ -12,6 +20,7 @@ function navigator() {
 }
 
 function pokemonPage() {
+  title.classList.add("inactive")
   pokedex2.classList.remove("inactive");
   containerPrincipal.classList.add("inactive");
   spritesContainer.classList.remove("inactive");
@@ -25,6 +34,7 @@ function pokemonPage() {
 }
 
 function homePage() {
+  title.classList.remove("inactive")
   pokedex2.classList.add("inactive");
   containerPrincipal.classList.remove("inactive");
   spritesContainer.classList.add("inactive");

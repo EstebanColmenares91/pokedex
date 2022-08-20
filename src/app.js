@@ -1,12 +1,11 @@
-const API_URL_FETCH_POKEMON = (id) =>
-  `https://pokeapi.co/api/v2/pokemon/${id}/`;
-const API_URL_FETCH_POKEMON_NAME = (name) =>
-  `https://pokeapi.co/api/v2/pokemon/${name}/`;
+const API_URL_FETCH_POKEMON = (id) =>  `https://pokeapi.co/api/v2/pokemon/${id}/`;
+
 
 let offset = 1;
 const limit = 75;
 const spritesArray = [];
 const typesArray = [];
+const pokemonArray = [];
 
 const typeColor = {
   bug: "#26de81",
@@ -34,7 +33,7 @@ function buscarPokemon() {
   const nombreIDValue = nombreID.value;
   const nameToLowerCase = nombreIDValue.toLowerCase();
   const nameToLowerCaseTrimed = nameToLowerCase.trim();
-  
+
   if (nameToLowerCaseTrimed.length === 0) {
     spanWarning.innerText = "Este campo se encuentra vacío";
   } else {
@@ -75,7 +74,7 @@ function removeChildNodes(parent) {
   }
 }
 
-/* UTILS CREATE POKEMON CON MANIPULACIÓN DEL DOM */
+/* CREATE POKEMON CON MANIPULACIÓN DEL DOM */
 function createPokemon(pokemon, childContainer, parentContainer) {
   parentContainer.innerHTML = "";
 
@@ -87,7 +86,7 @@ function createPokemon(pokemon, childContainer, parentContainer) {
 
   const sprite = document.createElement("img");
   sprite.src = pokemon.sprites.front_default;
-
+  
   spriteContainer.appendChild(sprite);
 
   const number = document.createElement("p");
@@ -97,52 +96,75 @@ function createPokemon(pokemon, childContainer, parentContainer) {
   name.classList.add("card__pokemonName");
   name.innerText = pokemon.name.toUpperCase();
 
-  card.addEventListener("click", () => {
+  sprite.addEventListener("click", () => {
     location.hash = "#pokemon=" + pokemon.name;
-    location.reload();
   });
 
-  card.append(spriteContainer, number, name);
+  const likeImg = document.createElement("img")
+  likeImg.setAttribute("src", "../css/img/heart.png");
+
+  likeImg.classList.add("likeImg")
+  const likeButton = document.createElement("a");
+  likeButton.classList.add("likeButton");
+  
+  likeButton.addEventListener('click', () => {
+    console.log(sisirve);
+  })
+
+  likeButton.appendChild(likeImg)
+
+  card.append(likeButton, spriteContainer, number, name);
   childContainer.appendChild(card);
   parentContainer.append(childContainer);
 }
 
 function createselectedPokemonByClick(pokemon) {
-  pokedex2.innerHTML = "";
+  pokemon__info.innerHTML = "";
+  const pokemonTypes = pokemon.types;
+  const pokemonStats = pokemon.stats;
 
   pokemon__name.innerText = pokemon.name.toUpperCase();
   pokemon__id.innerText = `#${pokemon.id.toString().padStart(3, 0)}`;
+
   height.innerText = `Height: ${pokemon.height / 10} Mts`;
   weight.innerText = `Weight: ${pokemon.weight / 10} KG`;
 
   pokemon__img.src = pokemon.sprites.other.home.front_default;
+  pokemon__img.alt = pokemon.name
+  pokemon__img.title = pokemon.name
   pokemon__figure.appendChild(pokemon__img);
 
-  hp.innerText = `${pokemon.stats[0].stat.name}: ${pokemon.stats[0].base_stat}`;
-  attack.innerText = `${pokemon.stats[1].stat.name}: ${pokemon.stats[1].base_stat}`;
-  defense.innerText = `${pokemon.stats[2].stat.name}: ${pokemon.stats[2].base_stat}`;
-  spAttack.innerText = `${pokemon.stats[3].stat.name}: ${pokemon.stats[3].base_stat}`;
-  spDefense.innerText = `${pokemon.stats[4].stat.name}: ${pokemon.stats[4].base_stat}`;
-  speed.innerText = `${pokemon.stats[5].stat.name}: ${pokemon.stats[5].base_stat}`;
+  /* POKEMON STATS */
+  pokemonStats.forEach((pokemonBaseStat) => {
+    pokemonStatName = pokemonBaseStat.stat.name;
+    pokemonStatValue = pokemonBaseStat.base_stat;
 
-  pokemon__stats.append(hp, attack, defense, spAttack, spDefense, speed);
+    spanStat = document.createElement("span");
+    spanStat.innerText = `${pokemonStatName}: ${pokemonStatValue}`;
+    pokemon__stats.append(spanStat);
+  });
 
-  const themeColor = typeColor[pokemon.types[0].type.name];
-  pokemonCard.style.background = `radial-gradient(circle at 50% 0%, ${themeColor} 36%, #0a162d 36%)`;
+  const backgroundColorByFirstType = typeColor[pokemonTypes[0].type.name];
+  pokemonCard.style.background = `radial-gradient(circle at 50% 0%, ${backgroundColorByFirstType} 36%, #0a162d 36%)`;
 
-  const pokemonTypes = pokemon.types;
+  /* POKEMON TYPES */
   pokemonTypes.forEach((type) => {
     typesArray.push(type.type.name);
   });
 
-  pokemon__type.innerHTML = "";
   typesArray.map((pokemonType) => {
-    const type123 = document.createElement("span");
-    type123.innerText = pokemonType.toUpperCase() + " ";
-    pokemon__type.append(type123);
+    const type = document.createElement("span");
+    type.classList.add("type");
+    
+    const typeText = document.createTextNode(pokemonType.toUpperCase());
+    type.appendChild(typeText);
+
+    type.style.background = typeColor[`${pokemonType}`]
+
+    pokemon__type.append(type);
   });
 
-  spritesContainer.innerHTML = "";
+  /* POKEMON IMAGES */
   const sprites = pokemon.sprites;
   for (const key in sprites) {
     if (typeof sprites[key] === "string") {
@@ -157,27 +179,31 @@ function createselectedPokemonByClick(pokemon) {
     spritesContainer.append(sprite__img);
   });
 
+  
   pokemonMainInfo.append(pokemon__name, pokemon__id, height, weight);
+  stats__container.append(pokemon__stats)
+  pokemon__info.append(pokemon__type, stats__container, spritesContainer)
+
+  /* ADDING THE INFO TO THE CARD */
   pokemonCard.append(
     pokemonMainInfo,
     pokemon__figure,
-    pokemon__type,
-    pokemon__stats,
-    spritesContainer
+    pokemon__info
   );
+
   pokedex2.appendChild(pokemonCard);
 }
 
 /* LLAMADAS A LA API */
 async function fetchPokemonName(nombre) {
   try {
-    const res = await fetch(API_URL_FETCH_POKEMON_NAME(nombre));
+    const res = await fetch(API_URL_FETCH_POKEMON(nombre));
 
     if (res.status === 404) {
       spanError.innerText = "POKEMON NO ENCONTRADO INTENTE DE NUEVO";
     } else {
       const data = await res.json();
-      
+
       createPokemon(data, pokemonName, searchedPokemon__container);
       console.log('llamando funcion');
     }
@@ -185,7 +211,6 @@ async function fetchPokemonName(nombre) {
     console.error(error);
   }
 }
-
 
 async function fetchPokemon(id) {
   try {
@@ -204,12 +229,42 @@ async function fetchPokemon(id) {
 }
 
 async function selectedPokemonByClick(pokemonSelected) {
-  const res = await fetch(API_URL_FETCH_POKEMON_NAME(pokemonSelected));
+  const res = await fetch(API_URL_FETCH_POKEMON(pokemonSelected));
   const data = await res.json();
 
   const pokemon = data;
 
   createselectedPokemonByClick(pokemon);
+}
+
+async function savedPokemon(id) {
+  const res = await fetch(API_URL_FETCH_POKEMON(id));
+  const data = await res.json()
+
+  console.log('guardadno');
+
+}
+
+async function deletePokemon(id) {
+  /* const res = await fetch(API_URL_FETCH_POKEMON(id));
+  const data = await res.json()
+
+  
+  const likeImg = document.createElement("img")
+  likeImg.setAttribute("src", "../css/img/heart.png");
+
+  likeImg.classList.add("likeImg")
+
+  const likeButton = document.createElement("a");
+
+  likeButton.classList.add("likeButton");
+  
+  likeButton.addEventListener('click', () => {
+    favoritePokemons.append(card);
+  })
+
+  likeButton.appendChild(likeImg) */
+
 }
 
 fetchPokemons(offset, limit);
