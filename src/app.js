@@ -88,11 +88,8 @@ async function selectedPokemonByClick(pokemonSelected) {
 }
 
 function savedPokemon(pokemon) {
-  createPokemon(pokemon, favorites, favoritePokemons);
+  savedPokemonTemplates(pokemon, favorites, favoritePokemons);
   console.log('guardado');
-}
-
-async function deletePokemon(pokemon) {
 }
 
 fetchPokemons(offset, limit);

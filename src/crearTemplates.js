@@ -7,7 +7,7 @@ function createPokemon(pokemon, childContainer, parentContainer) {
 
     const spriteContainer = document.createElement("div");
     spriteContainer.classList.add("img-container");
-  
+
     const sprite = document.createElement("img");
     sprite.src = pokemon.sprites.front_default;
     sprite.alt = pokemon.name;
@@ -63,7 +63,7 @@ function createselectedPokemonByClick(pokemon) {
     pokemon__img.alt = pokemon.name;
     pokemon__img.title = pokemon.name;
     pokemon__figure.appendChild(pokemon__img);
-   
+
     const backgroundColorByFirstType = typeColor[pokemonTypes[0].type.name];
     pokemonCard.style.background = `radial-gradient(circle at 50% 0%, ${backgroundColorByFirstType} 36%, #0a162d 36%)`;
 
@@ -114,4 +114,51 @@ function createselectedPokemonByClick(pokemon) {
     );
 
     pokedex2.appendChild(pokemonCard);
+}
+
+function savedPokemonTemplates(pokemon, childContainer, parentContainer) {
+    parentContainer.innerHTML = "";
+
+    const card = document.createElement("div");
+    card.classList.add("pokemon-block");
+
+    const spriteContainer = document.createElement("div");
+    spriteContainer.classList.add("img-container");
+
+    const sprite = document.createElement("img");
+    sprite.src = pokemon.sprites.front_default;
+    sprite.alt = pokemon.name;
+    sprite.title = pokemon.name.toUpperCase();
+
+    spriteContainer.appendChild(sprite);
+
+    const number = document.createElement("p");
+    number.textContent = `#${pokemon.id.toString().padStart(3, 0)}`;
+
+    const name = document.createElement("p");
+    name.classList.add("card__pokemonName");
+    name.innerText = pokemon.name.toUpperCase();
+
+    sprite.addEventListener("click", () => {
+        location.hash = "#pokemon=" + pokemon.name;
+    });
+
+    let likeImg = document.createElement("img");
+    likeImg.setAttribute("alt", "DISLIKE POKEMON");
+    likeImg.setAttribute("src", "../css/img/boton-eliminar.png");
+    likeImg.setAttribute("title", "DISLIKE POKEMON");
+    likeImg.classList.add("likeImg");
+
+    let likeButton = document.createElement("a");
+    likeButton.classList.add("likeButton");
+
+    likeButton.appendChild(likeImg);
+
+    likeButton.addEventListener('click', () => {
+        childContainer.removeChild(card)
+    });
+
+    card.append(likeButton, spriteContainer, number, name);
+    childContainer.appendChild(card);
+    parentContainer.append(childContainer);
 }
