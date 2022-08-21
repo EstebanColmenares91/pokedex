@@ -45,8 +45,9 @@ function createPokemon(pokemon, childContainer, parentContainer) {
 function createselectedPokemonByClick(pokemon) {
     const pokemonTypes = pokemon.types;
     const pokemonStats = pokemon.stats;
-    console.log(pokemonTypes);
-    console.log(pokemon);
+    const sprites = pokemon.sprites;
+    const spritesArray = Object.values(sprites);
+
 
     pokemon__name.innerText = pokemon.name.toUpperCase();
     pokemon__id.innerText = `#${pokemon.id.toString().padStart(3, 0)}`;
@@ -63,17 +64,17 @@ function createselectedPokemonByClick(pokemon) {
     pokemonCard.style.background = `radial-gradient(circle at 50% 0%, ${backgroundColorByFirstType} 36%, #0a162d 36%)`;
 
     /* POKEMON TYPES */
-    pokemon__type.innerHTML = ""
+    pokemon__type.innerHTML = "";
     pokemon.types.forEach((type) => {
         const typeName = type.type.name;
 
         const typeSpan = document.createElement("span");
-        typeSpan.textContent = typeName.toUpperCase()
+        typeSpan.textContent = typeName.toUpperCase();
         typeSpan.classList.add("type");
 
-        typeSpan.style.background = typeColor[`${typeName}`]
+        typeSpan.style.background = typeColor[`${typeName}`];
 
-        pokemon__type.append(typeSpan)
+        pokemon__type.append(typeSpan);
     });
 
     /* POKEMON STATS */
@@ -88,21 +89,14 @@ function createselectedPokemonByClick(pokemon) {
     });
 
     /* POKEMON IMAGES */
-    const sprites = pokemon.sprites;
-    for (const key in sprites) {
-        if (typeof sprites[key] === "string") {
-            spritesArray.push(sprites[key]);
-        }
-    }
-
     spritesContainer.innerHTML = "";
     spritesArray.forEach((sprite) => {
-        const sprite__img = document.createElement("img");
-        sprite__img.src = sprite;
-
-        spritesContainer.append(sprite__img);
+        if (typeof sprite === "string") {
+            const sprite__img = document.createElement("img");
+            sprite__img.src = sprite;
+            spritesContainer.append(sprite__img);
+        }
     });
-
 
     pokemonMainInfo.append(pokemon__name, pokemon__id, height, weight);
     stats__container.append(pokemon__stats)
