@@ -1,0 +1,1 @@
+const API_URL_FETCH_POKEMON = (id) =>  `https://pokeapi.co/api/v2/pokemon/${id}/`;
