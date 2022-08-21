@@ -26,10 +26,11 @@ function createPokemon(pokemon, childContainer, parentContainer) {
         location.hash = "#pokemon=" + pokemon.name;
     });
 
-    let likeImg = document.createElement("img");
-    let likeButton = document.createElement("a");
-    likeButton.classList.add("likeButton");
+    const likeImg = document.createElement("img");
     likeImg.classList.add("likeImg");
+
+    const likeButton = document.createElement("a");
+    likeButton.classList.add("likeButton");
     
     
     if (childContainer.nodeName === 'DIV' && parentContainer.nodeName === 'SECTION') {
