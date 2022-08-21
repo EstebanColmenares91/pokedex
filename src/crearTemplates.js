@@ -63,21 +63,17 @@ function createselectedPokemonByClick(pokemon) {
     pokemonCard.style.background = `radial-gradient(circle at 50% 0%, ${backgroundColorByFirstType} 36%, #0a162d 36%)`;
 
     /* POKEMON TYPES */
-    pokemonTypes.forEach((type) => {
-        typesArray.push(type.type.name);
-    });
-
     pokemon__type.innerHTML = ""
-    typesArray.forEach((pokemonType) => {
-        const type = document.createElement("span");
-        type.classList.add("type");
+    pokemon.types.forEach((type) => {
+        const typeName = type.type.name;
 
-        const typeText = document.createTextNode(pokemonType.toUpperCase());
-        type.appendChild(typeText);
+        const typeSpan = document.createElement("span");
+        typeSpan.textContent = typeName.toUpperCase()
+        typeSpan.classList.add("type");
 
-        type.style.background = typeColor[`${pokemonType}`]
+        typeSpan.style.background = typeColor[`${typeName}`]
 
-        pokemon__type.append(type);
+        pokemon__type.append(typeSpan)
     });
 
     /* POKEMON STATS */
