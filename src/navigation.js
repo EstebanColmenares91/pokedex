@@ -12,9 +12,7 @@ window.addEventListener("hashchange", navigator, false); //escucha la petición
 function navigator() {
   if (location.hash.startsWith("#pokemon=")) {
     pokemonPage();
-  }/* else if( location.hash.startsWith("#liked=pokemon=") ){
-    addPokemons()
-  } */else {
+  }else {
     homePage();
   }
   document.body.scrollTop = 0;

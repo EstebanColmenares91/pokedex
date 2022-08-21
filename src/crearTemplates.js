@@ -7,9 +7,11 @@ function createPokemon(pokemon, childContainer, parentContainer) {
 
     const spriteContainer = document.createElement("div");
     spriteContainer.classList.add("img-container");
-
+  
     const sprite = document.createElement("img");
     sprite.src = pokemon.sprites.front_default;
+    sprite.alt = pokemon.name;
+    sprite.title = pokemon.name.toUpperCase();
 
     spriteContainer.appendChild(sprite);
 
@@ -24,9 +26,11 @@ function createPokemon(pokemon, childContainer, parentContainer) {
         location.hash = "#pokemon=" + pokemon.name;
     });
 
-    let likeImg = document.createElement("img")
+    let likeImg = document.createElement("img");
+    likeImg.setAttribute("alt", "LIKE POKEMON");
     likeImg.setAttribute("src", "../css/img/heart.png");
-    likeImg.classList.add("likeImg")
+    likeImg.setAttribute("title", "LIKE POKEMON");
+    likeImg.classList.add("likeImg");
 
     let likeButton = document.createElement("a");
     likeButton.classList.add("likeButton");
@@ -34,7 +38,7 @@ function createPokemon(pokemon, childContainer, parentContainer) {
     likeButton.appendChild(likeImg);
 
     likeButton.addEventListener('click', () => {
-        savedPokemon(pokemon)
+        savedPokemon(pokemon);
     });
 
     card.append(likeButton, spriteContainer, number, name);
@@ -46,8 +50,8 @@ function createselectedPokemonByClick(pokemon) {
     const pokemonTypes = pokemon.types;
     const pokemonStats = pokemon.stats;
     const sprites = pokemon.sprites;
+    /* CONVERTIR EL OBJETO DE SPRITES A UN ARRAY */
     const spritesArray = Object.values(sprites);
-
 
     pokemon__name.innerText = pokemon.name.toUpperCase();
     pokemon__id.innerText = `#${pokemon.id.toString().padStart(3, 0)}`;

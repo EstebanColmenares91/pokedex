@@ -6,8 +6,9 @@ function buscarPokemon() {
   const nameToLowerCaseTrimed = nameToLowerCase.trim();
 
   if (nameToLowerCaseTrimed.length === 0) {
-    spanWarning.innerText = "Este campo se encuentra vacío";
+    spanWarning.innerText = "This input is empty.";
   } else {
+    pokemonName.innerHTML = ""
     spanError.innerText = "";
     spanWarning.innerText = "";
     fetchPokemonName(nameToLowerCaseTrimed);
@@ -27,7 +28,7 @@ previous.addEventListener("click", () => {
     removeChildNodes(pokemonContainer);
     fetchPokemons(offset, limit);
   } else {
-    spanError.innerText = "NO PUEDES SEGUIR RETROCEDIENDO";
+    spanError.innerText = "ACTION NOT VALID";
   }
 });
 
@@ -52,7 +53,7 @@ async function fetchPokemonName(nombre) {
     const res = await fetch(API_URL_FETCH_POKEMON(nombre));
 
     if (res.status === 404) {
-      spanError.innerText = "POKEMON NO ENCONTRADO INTENTE DE NUEVO";
+      spanError.innerText = "POKEMON NOT FOUND. TRY AGAIN";
     } else {
       const data = await res.json();
 
@@ -86,30 +87,12 @@ async function selectedPokemonByClick(pokemonSelected) {
   createselectedPokemonByClick(data);
 }
 
-async function savedPokemon(pokemon) {
+function savedPokemon(pokemon) {
   createPokemon(pokemon, favorites, favoritePokemons);
+  console.log('guardado');
 }
 
-async function deletePokemon(id) {
-  /* const res = await fetch(API_URL_FETCH_POKEMON(id));
-  const data = await res.json()
-
-  
-  const likeImg = document.createElement("img")
-  likeImg.setAttribute("src", "../css/img/heart.png");
-
-  likeImg.classList.add("likeImg")
-
-  const likeButton = document.createElement("a");
-
-  likeButton.classList.add("likeButton");
-  
-  likeButton.addEventListener('click', () => {
-    favoritePokemons.append(card);
-  })
-
-  likeButton.appendChild(likeImg) */
-
+async function deletePokemon(pokemon) {
 }
 
 fetchPokemons(offset, limit);

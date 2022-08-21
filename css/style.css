@@ -235,3 +235,14 @@ input {
 .type{
   padding: 0.5rem 2rem;
 }
+
+.favoritePokemons{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.favorites{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 15px;
+}

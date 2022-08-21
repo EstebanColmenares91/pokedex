@@ -6,10 +6,10 @@ const pokemonArray = [];
 
 const typeColor = {
   bug: "#26de81",
-  dragon: "#ffeaa7",
+  dragon: "#6655bb",
   electric: "#fed330",
   fairy: "#FF0069",
-  fighting: "#30336b",
+  fighting: "#6d4031",
   fire: "#f0932b",
   flying: "#81ecec",
   grass: "#00b894",
