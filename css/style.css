@@ -228,6 +228,10 @@ input {
   height: 45px;
 }
 
+.pokemon__type{
+  margin: 3rem 0;
+}
+
 .type{
   padding: 0.5rem 2rem;
 }

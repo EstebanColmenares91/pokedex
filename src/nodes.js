@@ -11,7 +11,7 @@ const containerPrincipal = document.querySelector(".otro-container");
 const pokemonName = document.querySelector("#pokemonName");
 const searchedPokemon__container = document.querySelector(".searchedPokemon__container")
 
-/* Message error */
+/* Message error  and Warning*/
 
 const spanError = document.querySelector(".spanError");
 const spanWarning = document.querySelector(".spanWarning");
@@ -53,3 +53,13 @@ const pokemon__name = document.querySelector(".pokemon__name");
 const pokemon__id = document.querySelector(".pokemon__id");
 const height = document.querySelector(".pokemon__height");
 const weight = document.querySelector(".pokemon__weight");
+
+/* Favorites */
+
+const favoritePokemons = document.querySelector(".favoritePokemons");
+const favorites = document.querySelector(".favorites")
+
+/* like botton */
+
+let likeImg = document.createElement("img")
+let likeButton = document.createElement("a");
