@@ -88,7 +88,7 @@ async function selectedPokemonByClick(pokemonSelected) {
 }
 
 function savedPokemon(pokemon) {
-  savedPokemonTemplates(pokemon, favorites, favoritePokemons);
+  createPokemon(pokemon, favorites, favoritePokemons);
   console.log('guardado');
 }
 

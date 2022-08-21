@@ -220,8 +220,7 @@ input {
 }
 
 .likeButton{
-  display: flex;
-  justify-content: flex-end;
+  display: inline-block;
 }
 
 .likeImg{

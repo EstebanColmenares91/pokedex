@@ -27,20 +27,32 @@ function createPokemon(pokemon, childContainer, parentContainer) {
     });
 
     let likeImg = document.createElement("img");
-    likeImg.setAttribute("alt", "LIKE POKEMON");
-    likeImg.setAttribute("src", "../css/img/heart.png");
-    likeImg.setAttribute("title", "LIKE POKEMON");
-    likeImg.classList.add("likeImg");
-
     let likeButton = document.createElement("a");
     likeButton.classList.add("likeButton");
+    likeImg.classList.add("likeImg");
+    
+    
+    if (childContainer.nodeName === 'DIV' && parentContainer.nodeName === 'SECTION') {
+        likeImg.setAttribute("alt", "DISLIKE POKEMON");
+        likeImg.setAttribute("src", "https://acortar.link/dW35Lt");
+        likeImg.setAttribute("title", "DISLIKE POKEMON");
+        
+        likeButton.addEventListener('click', () => {
+            childContainer.removeChild(card)
+        });
+    }
+    
+    if(childContainer.nodeName === 'DIV' && parentContainer.nodeName === 'DIV'){
+        likeImg.setAttribute("alt", "LIKE POKEMON");
+        likeImg.setAttribute("src", "https://acortar.link/fhuxqJ");
+        likeImg.setAttribute("title", "LIKE POKEMON");
+
+        likeButton.addEventListener('click', () => {
+            savedPokemon(pokemon);
+        });
+    }
 
     likeButton.appendChild(likeImg);
-
-    likeButton.addEventListener('click', () => {
-        savedPokemon(pokemon);
-    });
-
     card.append(likeButton, spriteContainer, number, name);
     childContainer.appendChild(card);
     parentContainer.append(childContainer);
@@ -116,49 +128,3 @@ function createselectedPokemonByClick(pokemon) {
     pokedex2.appendChild(pokemonCard);
 }
 
-function savedPokemonTemplates(pokemon, childContainer, parentContainer) {
-    parentContainer.innerHTML = "";
-
-    const card = document.createElement("div");
-    card.classList.add("pokemon-block");
-
-    const spriteContainer = document.createElement("div");
-    spriteContainer.classList.add("img-container");
-
-    const sprite = document.createElement("img");
-    sprite.src = pokemon.sprites.front_default;
-    sprite.alt = pokemon.name;
-    sprite.title = pokemon.name.toUpperCase();
-
-    spriteContainer.appendChild(sprite);
-
-    const number = document.createElement("p");
-    number.textContent = `#${pokemon.id.toString().padStart(3, 0)}`;
-
-    const name = document.createElement("p");
-    name.classList.add("card__pokemonName");
-    name.innerText = pokemon.name.toUpperCase();
-
-    sprite.addEventListener("click", () => {
-        location.hash = "#pokemon=" + pokemon.name;
-    });
-
-    let likeImg = document.createElement("img");
-    likeImg.setAttribute("alt", "DISLIKE POKEMON");
-    likeImg.setAttribute("src", "../css/img/boton-eliminar.png");
-    likeImg.setAttribute("title", "DISLIKE POKEMON");
-    likeImg.classList.add("likeImg");
-
-    let likeButton = document.createElement("a");
-    likeButton.classList.add("likeButton");
-
-    likeButton.appendChild(likeImg);
-
-    likeButton.addEventListener('click', () => {
-        childContainer.removeChild(card)
-    });
-
-    card.append(likeButton, spriteContainer, number, name);
-    childContainer.appendChild(card);
-    parentContainer.append(childContainer);
-}
