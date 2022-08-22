@@ -35,7 +35,7 @@ function createPokemon(pokemon, childContainer, parentContainer) {
     
     if (childContainer.nodeName === 'DIV' && parentContainer.nodeName === 'SECTION') {
         likeImg.setAttribute("alt", "DISLIKE POKEMON");
-        likeImg.setAttribute("src", "https://acortar.link/dW35Lt");
+        likeImg.setAttribute("src", "https://cdn-icons.flaticon.com/png/512/5974/premium/5974771.png?token=exp=1661135422~hmac=63bf28179a5088477aaec0bdc89fbd4d");
         likeImg.setAttribute("title", "DISLIKE POKEMON");
         
         likeButton.addEventListener('click', () => {
@@ -45,7 +45,7 @@ function createPokemon(pokemon, childContainer, parentContainer) {
     
     if(childContainer.nodeName === 'DIV' && parentContainer.nodeName === 'DIV'){
         likeImg.setAttribute("alt", "LIKE POKEMON");
-        likeImg.setAttribute("src", "https://acortar.link/fhuxqJ");
+        likeImg.setAttribute("src", "https://cdn-icons-png.flaticon.com/512/833/833472.png");
         likeImg.setAttribute("title", "LIKE POKEMON");
 
         likeButton.addEventListener('click', () => {
