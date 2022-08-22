@@ -38,7 +38,7 @@ function createPokemon(pokemon, childContainer, parentContainer) {
         disLikeButton.classList.add("likeButton");
 
         disLikeImg.setAttribute("alt", "DISLIKE POKEMON");
-        disLikeImg.setAttribute("src", "https://cdn-icons.flaticon.com/png/512/5974/premium/5974771.png?token=exp=1661135422~hmac=63bf28179a5088477aaec0bdc89fbd4d");
+        disLikeImg.setAttribute("src", "https://cdn-icons-png.flaticon.com/512/753/753345.png");
         disLikeImg.setAttribute("title", "DISLIKE POKEMON");
 
         disLikeButton.appendChild(disLikeImg);
