@@ -60,6 +60,4 @@ const favoritePokemons = document.querySelector(".favoritePokemons");
 const favorites = document.querySelector(".favorites")
 
 /* like botton */
-
-let likeImg = document.createElement("img")
-let likeButton = document.createElement("a");
+const buttons__container = document.querySelector(".buttons__container")

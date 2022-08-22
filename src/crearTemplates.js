@@ -2,6 +2,7 @@
 function createPokemon(pokemon, childContainer, parentContainer) {
     parentContainer.innerHTML = "";
 
+    /* CARD'S INFO */
     const card = document.createElement("div");
     card.classList.add("pokemon-block");
 
@@ -25,36 +26,50 @@ function createPokemon(pokemon, childContainer, parentContainer) {
     sprite.addEventListener("click", () => {
         location.hash = "#pokemon=" + pokemon.name;
     });
+    /* CARD'S INFO END*/
 
-    const likeImg = document.createElement("img");
-    likeImg.classList.add("likeImg");
+    /* DISLIKE BUTTON */
+    //IF THE POKEMON IS ADD TO THE FAV'S SECTION THEN THE DISLIKE BUTTON WILL BE ADD
+    if ((childContainer.nodeName === 'DIV' && parentContainer.nodeName === 'SECTION')) {
+        const disLikeImg = document.createElement("img");
+        disLikeImg.classList.add("likeImg");
 
-    const likeButton = document.createElement("a");
-    likeButton.classList.add("likeButton");
-    
-    
-    if (childContainer.nodeName === 'DIV' && parentContainer.nodeName === 'SECTION') {
-        likeImg.setAttribute("alt", "DISLIKE POKEMON");
-        likeImg.setAttribute("src", "https://cdn-icons.flaticon.com/png/512/5974/premium/5974771.png?token=exp=1661135422~hmac=63bf28179a5088477aaec0bdc89fbd4d");
-        likeImg.setAttribute("title", "DISLIKE POKEMON");
-        
-        likeButton.addEventListener('click', () => {
+        const disLikeButton = document.createElement("a");
+        disLikeButton.classList.add("likeButton");
+
+        disLikeImg.setAttribute("alt", "DISLIKE POKEMON");
+        disLikeImg.setAttribute("src", "https://cdn-icons.flaticon.com/png/512/5974/premium/5974771.png?token=exp=1661135422~hmac=63bf28179a5088477aaec0bdc89fbd4d");
+        disLikeImg.setAttribute("title", "DISLIKE POKEMON");
+
+        disLikeButton.appendChild(disLikeImg);
+
+        disLikeButton.addEventListener('click', () => {
             childContainer.removeChild(card)
         });
-    }
-    
-    if(childContainer.nodeName === 'DIV' && parentContainer.nodeName === 'DIV'){
+
+        card.append(disLikeButton, spriteContainer, number, name);
+
+    }else{
+        //ELSE THE LIKE BUTTON WILL BE ADD
+        const likeImg = document.createElement("img");
+        likeImg.classList.add("likeImg");
+
+        const likeButton = document.createElement("a");
+        likeButton.classList.add("likeButton");
+
         likeImg.setAttribute("alt", "LIKE POKEMON");
         likeImg.setAttribute("src", "https://cdn-icons-png.flaticon.com/512/833/833472.png");
         likeImg.setAttribute("title", "LIKE POKEMON");
 
+        likeButton.appendChild(likeImg);
+
         likeButton.addEventListener('click', () => {
             savedPokemon(pokemon);
         });
-    }
 
-    likeButton.appendChild(likeImg);
-    card.append(likeButton, spriteContainer, number, name);
+        card.append(likeButton, spriteContainer, number, name);
+    }
+    
     childContainer.appendChild(card);
     parentContainer.append(childContainer);
 }
