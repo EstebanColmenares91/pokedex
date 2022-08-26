@@ -17,7 +17,11 @@ function buscarPokemon() {
 
 async function fetchPokemons(offset, limit) {
   for (let index = offset; index < offset + limit; index++) {
-    await fetchPokemon(index);
+    if (index < 899) {
+      await fetchPokemon(index);
+    }else{
+      return
+    }
   }
 }
 
