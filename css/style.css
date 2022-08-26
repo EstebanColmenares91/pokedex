@@ -48,6 +48,7 @@ body {
 }
 
 .pagination {
+  width: 80%;
   margin-bottom: 50px;
 }
 
@@ -236,7 +237,7 @@ input {
 }
 
 .favoritePokemons{
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
 }
 
