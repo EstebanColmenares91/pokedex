@@ -23,7 +23,7 @@ function createPokemon(pokemon, childContainer, parentContainer) {
     name.classList.add("card__pokemonName");
     name.innerText = pokemon.name.toUpperCase();
 
-    sprite.addEventListener("click", () => {
+    spriteContainer.addEventListener("click", () => {
         location.hash = "#pokemon=" + pokemon.name;
     });
     /* CARD'S INFO END*/
