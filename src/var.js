@@ -1,5 +1,5 @@
 let offset = 1;
-const limit = 75;
+const limit = 50;
 const spritesArray = [];
 const typesArray = [];
 const pokemonArray = [];

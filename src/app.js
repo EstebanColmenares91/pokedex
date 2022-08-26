@@ -24,7 +24,7 @@ async function fetchPokemons(offset, limit) {
 /* PÁGINA ANTERIOR */
 previous.addEventListener("click", () => {
   if (offset != 1) {
-    offset -= 75;
+    offset -= 50;
     removeChildNodes(pokemonContainer);
     fetchPokemons(offset, limit);
   } else {
@@ -34,9 +34,13 @@ previous.addEventListener("click", () => {
 
 /* PÁGINA SIGUIENTE */
 next.addEventListener("click", () => {
-  offset += 75;
-  removeChildNodes(pokemonContainer);
-  fetchPokemons(offset, limit);
+  if (offset > 850) {
+    spanError.innerText = "ACTION NOT VALID";
+  }else{
+    offset += 50;
+    removeChildNodes(pokemonContainer);
+    fetchPokemons(offset, limit);
+  }
 });
 
 /* REMOVER NODOS DE LA PÁGINA ANTERIOR */
