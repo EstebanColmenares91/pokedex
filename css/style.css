@@ -87,7 +87,7 @@ body {
   color: white;
 }
 
-.pokemon-block{
+.img-container, .likeImg{
   cursor: pointer;
 }
 
